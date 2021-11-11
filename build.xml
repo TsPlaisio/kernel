@@ -1,0 +1,57 @@
+<project name="Plaisio" default="build" basedir=".">
+    <!-- Update dependencies -->
+    <target name="update">
+        <exec executable="composer" checkreturn="true" passthru="true">
+            <arg value="--ansi"/>
+            <arg value="update"/>
+        </exec>
+        <exec executable="npm" checkreturn="true" passthru="true">
+            <arg value="--ansi"/>
+            <arg value="update"/>
+        </exec>
+
+        <phing phingfile="build.xml" target="code-generation" haltonfailure="true"/>
+        <phing phingfile="build.xml" target="outdated" haltonfailure="true"/>
+    </target>
+
+    <!-- Installs dependencies -->
+    <target name="install">
+        <exec executable="composer" checkreturn="true" passthru="true">
+            <arg value="--ansi"/>
+            <arg value="install"/>
+        </exec>
+        <exec executable="npm" checkreturn="true" passthru="true">
+            <arg value="--ansi"/>
+            <arg value="install"/>
+        </exec>
+
+        <phing phingfile="build.xml" target="code-generation" haltonfailure="true"/>
+        <phing phingfile="build.xml" target="outdated" haltonfailure="true"/>
+    </target>
+
+    <!-- Show outdated dependencies -->
+    <target name="outdated">
+        <exec executable="composer" checkreturn="true" passthru="true">
+            <arg value="--ansi"/>
+            <arg value="outdated"/>
+            <arg value="--direct"/>
+        </exec>
+        <exec executable="npm" checkreturn="false" passthru="true">
+            <arg value="--ansi"/>
+            <arg value="outdated"/>
+        </exec>
+    </target>
+
+    <!-- Show outdated dependencies -->
+    <target name="code-generation">
+        <exec executable="bin/plaisio" checkreturn="true" passthru="true">
+            <arg value="--ansi"/>
+            <arg value="plaisio:type-script-automator"/>
+            <arg value="--once"/>
+        </exec>
+    </target>
+
+    <target name="build">
+        <echo message=""/>
+    </target>
+</project>

@@ -1,0 +1,17 @@
+{
+  "name": "plaisio-ts/kernel",
+  "description": "PhpPlaisio (TypeScript): Kernel",
+  "keywords": [
+    "PhpPlaisio",
+    "Kernel"
+  ],
+  "license": "MIT",
+  "require-dev": {
+    "phing/phing": "^2.17.0",
+    "plaisio/console": "^2.5.0"
+  },
+  "config": {
+    "bin-dir": "bin/",
+    "sort-packages": true
+  }
+}

@@ -1,0 +1,12 @@
+/.idea
+/.nyc_output
+/bin/
+/composer.lock
+/coverage
+/node_modules
+/package-lock.json
+/src/**/*.js
+/src/**/*.map
+/test/**/*.js
+/test/**/*.map
+/vendor/
