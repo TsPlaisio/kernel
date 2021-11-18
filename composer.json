@@ -2,7 +2,7 @@
   "name": "plaisio-ts/kernel",
   "description": "PhpPlaisio (TypeScript): Kernel",
   "keywords": [
-    "PhpPlaisio",
+    "TsPlaisio",
     "Kernel"
   ],
   "license": "MIT",
