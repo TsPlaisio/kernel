@@ -16,14 +16,29 @@ export class Kernel
    */
   public static readonly eventTypeBeefyHtmlAdded: string = 'b65beb48-c06e-4bff-93cb-2dc6b5b4b619';
 
+  /**
+   * The singleton instance of this class.
+   */
+  private static instance: Kernel;
+
   //--------------------------------------------------------------------------------------------------------------------
   /**
    * Object constructor.
    */
-  public constructor()
+  private constructor()
   {
+    this.evalPhpPlaisioInlineJs();
     this.installObservers();
     Kernel.triggerAllModulesLoaded();
+  }
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * Returns the singleton instance of the class.
+   */
+  public static getInstance(): Kernel
+  {
+    return this.instance || (this.instance = new this());
   }
 
   //--------------------------------------------------------------------------------------------------------------------
@@ -45,6 +60,19 @@ export class Kernel
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
+   * Executes JavaScript code dynamically generated in PHP.
+   */
+  private evalPhpPlaisioInlineJs(): void
+  {
+    if (window.hasOwnProperty('php_plaisio_inline_js'))
+    {
+      // @ts-ignore
+      eval(php_plaisio_inline_js);
+    }
+  }
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
    * Installs all observers.
    */
   private installObservers(): void
@@ -60,4 +88,4 @@ export class Kernel
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// Plaisio\Console\Helper\TypeScript\TypeScriptMarkHelper::md5: 4a73d8ce1fd9bc53e55381e1c4773007
+// Plaisio\Console\Helper\TypeScript\TypeScriptMarkHelper::md5: f4e006d2b1bba3ce3dc0f991e71c50aa
