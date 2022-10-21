@@ -1,4 +1,5 @@
 import * as $ from 'jquery';
+import TriggeredEvent = JQuery.TriggeredEvent;
 
 /**
  * The TypeScript kernel of PhpPlaisio.
@@ -34,11 +35,33 @@ export class Kernel
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
+   * Triggers a Kernel.eventTypeBeefyHtmlAdded event for an HTML snippet that has been added to the HTML document.
+   *
+   * @param $html The jQuery object of the added HTML snippet.
+   */
+  public static beefyHtmlAdded($html: JQuery): void
+  {
+    $('body').trigger(Kernel.eventTypeBeefyHtmlAdded, [$html]);
+  }
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
    * Returns the singleton instance of the class.
    */
   public static getInstance(): Kernel
   {
     return this.instance || (this.instance = new this());
+  }
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * Installs an observer for a Kernel.eventTypeBeefyHtmlAdded event.
+   *
+   * @param handler The function to called on a Kernel.eventTypeBeefyHtmlAdded event.
+   */
+  public static onBeefyHtmlAdded(handler: (event: TriggeredEvent, $html: JQuery) => void)
+  {
+    $('body').on(Kernel.eventTypeBeefyHtmlAdded, handler);
   }
 
   //--------------------------------------------------------------------------------------------------------------------
@@ -80,7 +103,7 @@ export class Kernel
     const $body = $('body');
     $body.on(Kernel.eventTypeAllModulesLoaded, function ()
     {
-      $body.trigger(Kernel.eventTypeBeefyHtmlAdded, $body);
+      Kernel.beefyHtmlAdded($body);
     });
   }
 
@@ -88,4 +111,4 @@ export class Kernel
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// Plaisio\Console\Helper\TypeScript\TypeScriptMarkHelper::md5: f4e006d2b1bba3ce3dc0f991e71c50aa
+// Plaisio\Console\Helper\TypeScript\TypeScriptMarkHelper::md5: 61504527fd673038e70aae28ada57fc0
