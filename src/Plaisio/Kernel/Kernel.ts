@@ -18,6 +18,11 @@ export class Kernel
   public static readonly eventTypeBeefyHtmlAdded: string = 'b65beb48-c06e-4bff-93cb-2dc6b5b4b619';
 
   /**
+   * Event triggered when a HTML element visibility has been toggled.
+   */
+  public static readonly eventTypeVisibilityToggled: string = 'b6dcc00c-11d1-439d-89ce-4bfeb457d1b6';
+
+  /**
    * The singleton instance of this class.
    */
   private static instance: Kernel;
@@ -38,6 +43,8 @@ export class Kernel
    * Triggers a Kernel.eventTypeBeefyHtmlAdded event for an HTML snippet that has been added to the HTML document.
    *
    * @param $html The jQuery object of the added HTML snippet.
+   *
+   * @deprecated Use triggerBeefyHtmlAdded() instead.
    */
   public static beefyHtmlAdded($html: JQuery): void
   {
@@ -62,6 +69,39 @@ export class Kernel
   public static onBeefyHtmlAdded(handler: (event: TriggeredEvent, $html: JQuery) => void)
   {
     $('body').on(Kernel.eventTypeBeefyHtmlAdded, handler);
+  }
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * Installs an observer for a Kernel.eventTypeVisibilityToggled event.
+   *
+   * @param handler The function to called on a Kernel.eventTypeVisibilityToggled event.
+   */
+  public static onVisibilityToggled(handler: (event: TriggeredEvent, $html: JQuery) => void)
+  {
+    $('body').on(Kernel.eventTypeVisibilityToggled, handler);
+  }
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * Triggers a Kernel.eventTypeBeefyHtmlAdded event for an HTML snippet that has been added to the HTML document.
+   *
+   * @param $html The jQuery object of the added HTML snippet.
+   */
+  public static triggerBeefyHtmlAdded($html: JQuery): void
+  {
+    $('body').trigger(Kernel.eventTypeBeefyHtmlAdded, [$html]);
+  }
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * Triggers a Kernel.eventTypeVisibilityToggled event for an HTML snippet whose visibility has been toggled.
+   *
+   * @param $html The jQuery object of the top HTML element.
+   */
+  public static triggerVisibilityToggled($html: JQuery): void
+  {
+    $('body').trigger(Kernel.eventTypeVisibilityToggled, [$html]);
   }
 
   //--------------------------------------------------------------------------------------------------------------------
@@ -103,7 +143,7 @@ export class Kernel
     const $body = $('body');
     $body.on(Kernel.eventTypeAllModulesLoaded, function ()
     {
-      Kernel.beefyHtmlAdded($body);
+      Kernel.triggerBeefyHtmlAdded($body);
     });
   }
 
@@ -111,4 +151,4 @@ export class Kernel
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// Plaisio\Console\Helper\TypeScript\TypeScriptMarkHelper::md5: 61504527fd673038e70aae28ada57fc0
+// Plaisio\Console\Helper\TypeScript\TypeScriptMarkHelper::md5: 12aa1b567f5cb4731c37eb6907212c0f
