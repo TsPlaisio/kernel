@@ -127,10 +127,10 @@ export class Kernel
    */
   private evalPhpPlaisioInlineJs(): void
   {
-    if (window.hasOwnProperty('php_plaisio_inline_js'))
+    const phpInlineJs = $('script[src=' + $.escapeSelector('/js/require.js')+']').attr('data-php-inline-js');
+    if (phpInlineJs)
     {
-      // @ts-ignore
-      eval(php_plaisio_inline_js);
+      eval(phpInlineJs);
     }
   }
 
@@ -151,4 +151,4 @@ export class Kernel
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// Plaisio\Console\Helper\TypeScript\TypeScriptMarkHelper::md5: 12aa1b567f5cb4731c37eb6907212c0f
+// Plaisio\Console\Helper\TypeScript\TypeScriptMarkHelper::md5: 75507f23400cace78bc318a6e9973379

@@ -6,9 +6,12 @@
     "Kernel"
   ],
   "license": "MIT",
+  "require": {
+    "plaisio/web-assets-core": "^4.0.1"
+  },
   "require-dev": {
     "phing/phing": "^2.17.4",
-    "plaisio/console": "^2.7.1"
+    "plaisio/console": "^2.8.0"
   },
   "config": {
     "bin-dir": "bin/",
