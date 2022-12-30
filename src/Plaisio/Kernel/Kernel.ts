@@ -10,17 +10,17 @@ export class Kernel
   /**
    * Event triggered when all modules are loaded.
    */
-  public static readonly eventTypeAllModulesLoaded: string = '2a6aedda-9abd-4490-898d-d7acc898cc29';
+  private static readonly eventTypeAllModulesLoaded: string = '2a6aedda-9abd-4490-898d-d7acc898cc29';
 
   /**
    * Event triggered when a beefy HTMl snippet has been added to the HTML document.
    */
-  public static readonly eventTypeBeefyHtmlAdded: string = 'b65beb48-c06e-4bff-93cb-2dc6b5b4b619';
+  private static readonly eventTypeBeefyHtmlAdded: string = 'b65beb48-c06e-4bff-93cb-2dc6b5b4b619';
 
   /**
    * Event triggered when a HTML element visibility has been toggled.
    */
-  public static readonly eventTypeVisibilityToggled: string = 'b6dcc00c-11d1-439d-89ce-4bfeb457d1b6';
+  private static readonly eventTypeVisibilityToggled: string = 'b6dcc00c-11d1-439d-89ce-4bfeb457d1b6';
 
   /**
    * The singleton instance of this class.
@@ -62,9 +62,20 @@ export class Kernel
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
+   * Installs an observer for a Kernel.eventTypeAllModulesLoaded event.
+   *
+   * @param handler The function to be called on a Kernel.eventTypeAllModulesLoaded event.
+   */
+  public static onAllModulesLoaded(handler: (event: TriggeredEvent, $html: JQuery) => void)
+  {
+    $('body').on(Kernel.eventTypeAllModulesLoaded, handler);
+  }
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
    * Installs an observer for a Kernel.eventTypeBeefyHtmlAdded event.
    *
-   * @param handler The function to called on a Kernel.eventTypeBeefyHtmlAdded event.
+   * @param handler The function to be called on a Kernel.eventTypeBeefyHtmlAdded event.
    */
   public static onBeefyHtmlAdded(handler: (event: TriggeredEvent, $html: JQuery) => void)
   {
@@ -75,7 +86,7 @@ export class Kernel
   /**
    * Installs an observer for a Kernel.eventTypeVisibilityToggled event.
    *
-   * @param handler The function to called on a Kernel.eventTypeVisibilityToggled event.
+   * @param handler The function to be called on a Kernel.eventTypeVisibilityToggled event.
    */
   public static onVisibilityToggled(handler: (event: TriggeredEvent, $html: JQuery) => void)
   {
@@ -127,7 +138,7 @@ export class Kernel
    */
   private evalPhpPlaisioInlineJs(): void
   {
-    const phpInlineJs = $('script[src=' + $.escapeSelector('/js/require.js')+']').attr('data-php-inline-js');
+    const phpInlineJs = $('script[src=' + $.escapeSelector('/js/require.js') + ']').attr('data-php-inline-js');
     if (phpInlineJs)
     {
       eval(phpInlineJs);
@@ -151,4 +162,4 @@ export class Kernel
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// Plaisio\Console\Helper\TypeScript\TypeScriptMarkHelper::md5: 75507f23400cace78bc318a6e9973379
+// Plaisio\Console\Helper\TypeScript\TypeScriptMarkHelper::md5: 8a56d1d32bf947b5306848c3e8b5ce0d
