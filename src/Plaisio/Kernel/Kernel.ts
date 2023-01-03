@@ -22,6 +22,13 @@ export class Kernel
    */
   private static readonly eventTypeVisibilityToggled: string = 'b6dcc00c-11d1-439d-89ce-4bfeb457d1b6';
 
+
+  /**
+   * A unique constant for identifying the main script element. Must align with the ID in package
+   * plaisio/web-assets-core.
+   */
+  private static readonly mainId: string = '32313ac1-c9eb-4464-a1fc-033544830ffa';
+
   /**
    * The singleton instance of this class.
    */
@@ -138,7 +145,7 @@ export class Kernel
    */
   private evalPhpPlaisioInlineJs(): void
   {
-    const phpInlineJs = $('script[src=' + $.escapeSelector('/js/require.js') + ']').attr('data-php-inline-js');
+    const phpInlineJs = $('script[id=' + $.escapeSelector(Kernel.mainId) + ']').attr('data-php-inline-js');
     if (phpInlineJs)
     {
       eval(phpInlineJs);
@@ -162,4 +169,4 @@ export class Kernel
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// Plaisio\Console\Helper\TypeScript\TypeScriptMarkHelper::md5: 8a56d1d32bf947b5306848c3e8b5ce0d
+// Plaisio\Console\Helper\TypeScript\TypeScriptMarkHelper::md5: b1d8145a212e5c63ce4f2f71abb0dee2

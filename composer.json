@@ -7,7 +7,7 @@
   ],
   "license": "MIT",
   "require": {
-    "plaisio/web-assets-core": "^4.0.1"
+    "plaisio/web-assets-core": "^4.0.2"
   },
   "require-dev": {
     "phing/phing": "^2.17.4",
