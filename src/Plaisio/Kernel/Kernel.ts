@@ -169,4 +169,4 @@ export class Kernel
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// Plaisio\Console\Helper\TypeScript\TypeScriptMarkHelper::md5: b1d8145a212e5c63ce4f2f71abb0dee2
+// Plaisio\Console\TypeScript\Helper\MarkHelper::md5: b1d8145a212e5c63ce4f2f71abb0dee2

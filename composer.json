@@ -7,11 +7,11 @@
   ],
   "license": "MIT",
   "require": {
-    "plaisio/web-assets-core": "^4.0.2"
+    "plaisio/web-assets-core": "^4.1.0"
   },
   "require-dev": {
     "phing/phing": "^2.17.4",
-    "plaisio/console": "^2.8.0"
+    "plaisio/console-type-script": "^1.0.0"
   },
   "config": {
     "bin-dir": "bin/",
